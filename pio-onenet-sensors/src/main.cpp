@@ -27,6 +27,11 @@ String make_topic_set()
   return String("$sys/") + ONENET_PRODUCT_ID + "/" + ONENET_DEVICE_NAME + "/thing/property/set";
 }
 
+String make_topic_post_reply()
+{
+  return String("$sys/") + ONENET_PRODUCT_ID + "/" + ONENET_DEVICE_NAME + "/thing/property/post/reply";
+}
+
 String make_topic_set_reply()
 {
   return String("$sys/") + ONENET_PRODUCT_ID + "/" + ONENET_DEVICE_NAME + "/thing/property/set_reply";
@@ -69,6 +74,14 @@ void mqtt_callback(char *topic, byte *payload, unsigned int length)
     return;
   }
 
+  if (String(topic) == make_topic_post_reply()) {
+    int code = root["code"] | -1;
+    const char *msg = root["msg"] | "";
+    const char *msg_id = root["id"] | "0";
+    Serial.printf("Property post reply: id=%s code=%d msg=%s\r\n", msg_id, code, msg);
+    return;
+  }
+
   const char *msg_id = root["id"] | "0";
   JsonVariantConst params = root["params"];
   if (params.isNull()) {
@@ -102,7 +115,9 @@ void connect_mqtt()
     if (mqtt_client.connect(ONENET_DEVICE_NAME, ONENET_PRODUCT_ID, ONENET_DEVICE_TOKEN)) {
       Serial.println("MQTT connected");
       mqtt_client.subscribe(make_topic_set().c_str());
+      mqtt_client.subscribe(make_topic_post_reply().c_str());
       Serial.printf("Subscribed: %s\r\n", make_topic_set().c_str());
+      Serial.printf("Subscribed: %s\r\n", make_topic_post_reply().c_str());
     } else {
       Serial.printf("MQTT connect failed, rc=%d\r\n", mqtt_client.state());
       delay(2000);

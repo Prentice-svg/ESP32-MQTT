@@ -1,0 +1,2 @@
+source E:/Dev/esp32-mqtt/build/gdbinit/symbols
+source E:/Dev/esp32-mqtt/build/gdbinit/connect

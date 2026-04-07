@@ -1,0 +1,43 @@
+Command: C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe C:\esp\v6.0\esp-idf\tools/idf_monitor.py -p COM3 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace E:\Dev\esp32-mqtt\build\mqtt_tcp.elf E:\Dev\esp32-mqtt\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe' 'C:\esp\v6.0\esp-idf\tools\idf.py' '-p' 'COM3'
+[0;32mI (104) esp_image: segment 1: paddr=00030f50 vaddr=3fc92600 sizeESP-ROM:esp32c3-api1-20210207[0m
+Build:Feb  7 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4204d1a0
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5830,len:0x155c
+load:0x403cbf10,len:0xce0
+load:0x403ce710,len:0x2fbc
+entry 0x403cbf1a
+[0;32mI (24) boot: ESP-IDF v6.0 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time Apr  7 2026 11:41:31[0m
+[0;32mI (25) boot: chip revision: v0.4[0m
+[0;32mI (25) boot: efuse block revision: v1.3[0m
+[0;32mI (28) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (32) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (35) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (39) boot: Enabling RNG early entropy source...[0m
+[0;32mI (44) boot: Partition Table:[0m
+[0;32mI (46) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (53) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (59) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (66) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (72) boot: End of partition table[0m
+[0;32mI (75) esp_image: segment 0: paddr=00010020 vaddr=3c0c0020 size=20f28h (134952) map[0m
+[0;32mI (104) esp_image: segment 1: paddr=00030f50 vaddr=3fc92600 size=03440h ( 13376) load[0m
+[0;32mI (107) esp_image: segment 2: paddr=00034398 vaddr=40380000 size=0bc80h ( 48256) load[0m
+[0;32mI (116) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=b6b3ch (748348) map[0m
+[0;32mI (234) esp_image: segment 4: paddr=000f6b64 vaddr=4038bc80 size=0691ch ( 26908) load[0m
+[0;32mI (239) esp_image: segment 5: paddr=000fd488 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (245) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (245) boot: Disabling RNG early entropy source...[0m
+[0;32mI (259) cpu_start: Unicore app[0m
+[0;32mI (549) wifi:mode : sta (48:f6:ee:23:01:0c)[0m
+[0;32mI (549) wifi:enable tsf[0m
+[0;32mI (549) example_connect: Connecting to myssid...[0m
+[0;33mW (549) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (559) example_connect: Waiting for IP(s)[0m
+[0;32mI (2959) example_connect: Wi-Fi disconnected 201, trying to reconnect...[0m
+[0;32mI (5369) example_connect: Wi-Fi disconnected 201, trying to reconnect...[0m
+[0;32mI (7789) example_connect: Wi-Fi disconnected 201, trying to reconnect...[0m
+[0;32mI (10199) example_connect: Wi-Fi disconnected 201, trying to reconnect...[0m

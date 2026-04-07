@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <math.h>
 #include <Wire.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -131,6 +132,11 @@ bool read_aht(float &temperature, float &humidity)
   return true;
 }
 
+float round_to_1_decimal(float value)
+{
+  return roundf(value * 10.0f) / 10.0f;
+}
+
 void publish_telemetry()
 {
   float temperature = NAN;
@@ -145,6 +151,8 @@ void publish_telemetry()
   JsonObject params = payload_doc["params"].to<JsonObject>();
 
   if (read_aht(temperature, humidity)) {
+    temperature = round_to_1_decimal(temperature);
+    humidity = round_to_1_decimal(humidity);
     params[PROP_TEMPERATURE]["value"] = temperature;
     params[PROP_HUMIDITY]["value"] = humidity;
   }
@@ -157,7 +165,7 @@ void publish_telemetry()
   Serial.printf("Publish %s\r\n", ok ? "OK" : "FAILED");
   Serial.printf("Soil raw/percent: %d%%\r\n", soil_percent);
   if (!isnan(temperature) && !isnan(humidity)) {
-    Serial.printf("AHT30 temperature=%.2f humidity=%.2f\r\n", temperature, humidity);
+    Serial.printf("AHT30 temperature=%.1f humidity=%.1f\r\n", temperature, humidity);
   } else {
     Serial.println("AHT30 data unavailable");
   }
@@ -169,7 +177,11 @@ void publish_telemetry()
 void setup()
 {
   Serial.begin(115200);
-  delay(1000);
+  const unsigned long serial_wait_start = millis();
+  while (!Serial && millis() - serial_wait_start < 2000) {
+    delay(10);
+  }
+  delay(200);
   Serial.println();
   Serial.println("ESP32-C3 OneNet sensor node starting...");
 

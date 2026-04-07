@@ -1,0 +1,8 @@
+Command: ninja all
+[1/4] C:\Windows\system32\cmd.exe /C "cd /D E:\Dev\esp32-mqtt\build && C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe C:/esp/v6.0/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app E:/Dev/esp32-mqtt/build/partition_table/partition-table.bin E:/Dev/esp32-mqtt/build/mqtt_tcp.bin"
+mqtt_tcp.bin binary size 0xed4d0 bytes. Smallest app partition is 0x100000 bytes. 0x12b30 bytes (7%) free.
+[2/4] Performing build step for 'bootloader'
+[1/1] C:\Windows\system32\cmd.exe /C "cd /D E:\Dev\esp32-mqtt\build\bootloader && C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe C:/esp/v6.0/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 E:/Dev/esp32-mqtt/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5250 bytes. 0x2db0 bytes (36%) free.
+[3/4] No install step for 'bootloader'
+[4/4] Completed 'bootloader'

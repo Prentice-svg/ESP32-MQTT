@@ -1,0 +1,29 @@
+Command: cmake -G Ninja -B E:\Dev\esp32-mqtt\build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32c3 -DCCACHE_ENABLE=False E:\Dev\esp32-mqtt
+CMake Warning at C:/esp/v6.0/esp-idf/tools/cmake/build.cmake:693 (message):
+Call Stack (most recent call first):
+  C:/esp/v6.0/esp-idf/tools/cmake/project.cmake:742 (idf_build_process)
+  CMakeLists.txt:9 (project)
+
+
+Configuration Report               
++---------------------------------+
+|  Parser Version: 1              |
+|  Verbosity: default             |
+|  Defaults policy: sdkconfig     |
+|  Status: Finished successfully  |
+|                                 |
++---------------------------------+
+CMake Warning at C:/esp/v6.0/esp-idf/tools/cmake/project.cmake:755 (message):
+  Missing kconfig option.  Re-run the build process...
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (project)
+
+
+Configuration Report               
++---------------------------------+
+|  Parser Version: 1              |
+|  Verbosity: default             |
+|  Defaults policy: sdkconfig     |
+|  Status: Finished successfully  |
+|                                 |
++---------------------------------+

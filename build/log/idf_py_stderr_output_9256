@@ -1,0 +1,78 @@
+Command: C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe C:\esp\v6.0\esp-idf\tools/idf_monitor.py -p COM3 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace E:\Dev\esp32-mqtt\build\mqtt_tcp.elf E:\Dev\esp32-mqtt\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v6.0\venv\Scripts\python.exe' 'C:\esp\v6.0\esp-idf\tools\idf.py' '-p' 'COM3'
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+[0;33m--- Using \\.\COM3 instead...[0m
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM3 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x40385520: [0;33mrv_utils_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/riscv/include/riscv/rv_utils.h[0m[0m:[1;31m80[0m
+[0m--- (inlined by) [0;33mesp_cpu_wait_for_intr[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/esp_hw_support/cpu.c[0m[0m:[1;31m62[0m
+[0m--- 0x403cbf10: [0;33mesp_bootloader_get_description[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c[0m[0m:[1;31m40[0m
+[0m--- 0x403ce710: [0;33mesp_flash_encryption_enabled[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/bootloader_support/src/flash_encrypt.c[0m[0m:[1;31m93[0m
+[0m--- 0x403cbf1a: [0;33mcall_start_cpu0[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/bootloader/subproject/main/bootloader_start.c[0m[0m:[1;31m27[0m
+[0m--- 0x420117f2: [0;33mapp_main[0m[0m at [0;32mE:/Dev/esp32-mqtt/main/app_main.c[0m[0m:[1;31m593[0m
+[0m--- 0x40387c73: [0;33m_esp_error_check_failed[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/esp_system/esp_err.c[0m[0m:[1;31m49[0m
+[0;33m--- Stack dump detected[0m
+[0m--- 0x40387cbe: [0;33mpanic_abort[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/esp_system/panic.c[0m[0m:[1;31m473[0m
+[0m--- 0x40387c7c: [0;33mesp_vApplicationTickHook[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/esp_system/freertos_hooks.c[0m[0m:[1;31m31[0m
+[0m--- 0x40380001: [0;33m_vector_table[0m[0m at [0;32mC:/esp/v6.0/esp-idf/components/riscv/vectors_intc.S[0m[0m:[1;31m54[0m
+[0m
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\__main__.py", line 4, in <module>
+    main()
+    ~~~~^^
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\idf_monitor.py", line 529, in main
+    monitor.main_loop()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\idf_monitor.py", line 254, in main_loop
+    self._main_loop()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\idf_monitor.py", line 384, in _main_loop
+    super()._main_loop()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\idf_monitor.py", line 303, in _main_loop
+    self.serial_handler.handle_serial_input(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        data,
+        ^^^^^
+    ...<4 lines>...
+        self.check_gdb_stub_and_run,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\base\serial_handler.py", line 229, in handle_serial_input
+    self.check_panic_decode_trigger(line_strip)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_monitor\base\serial_handler.py", line 304, in check_panic_decode_trigger
+    out = self.panic_handler.process_panic_output(self._panic_buffer)
+  File "C:\Espressif\tools\python\v6.0\venv\Lib\site-packages\esp_idf_panic_decoder\panic_output_decoder.py", line 45, in process_panic_output
+    output = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+  File "C:\Users\13158\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\13158\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\13158\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\13158\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+                             # no special security
+                             ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                             cwd,
+                             ^^^^
+                             startupinfo)
+                             ^^^^^^^^^^^^
+FileNotFoundError: [WinError 2] 系

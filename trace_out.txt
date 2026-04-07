@@ -1,0 +1,1 @@
+Put cmake in trace mode, but with variables expanded.

@@ -1,15 +1,15 @@
 #pragma once
 
 // Wi-Fi credentials
-#define WIFI_SSID           "YOUR_WIFI_SSID"
-#define WIFI_PASSWORD       "YOUR_WIFI_PASSWORD"
+#define WIFI_SSID           "CMCC-etru"
+#define WIFI_PASSWORD       "4us46hfx"
 
 // OneNet MQTT configuration
 #define ONENET_MQTT_HOST    "mqtts.heclouds.com"
 #define ONENET_MQTT_PORT    1883
-#define ONENET_PRODUCT_ID   "YOUR_PRODUCT_ID"
-#define ONENET_DEVICE_NAME  "YOUR_DEVICE_NAME"
-#define ONENET_DEVICE_TOKEN "YOUR_DEVICE_TOKEN"
+#define ONENET_PRODUCT_ID   "45Z51DlJn3"
+#define ONENET_DEVICE_NAME  "esp32-01"
+#define ONENET_DEVICE_TOKEN "version=2018-10-31&res=products%2F45Z51DlJn3%2Fdevices%2Fesp32-01&et=1806712140&method=md5&sign=C%2Fy4L5HBQBksjbHUSe9DSw%3D%3D"
 
 // OneNet property identifiers
 // These identifiers should match your OneNet model exactly.

@@ -82,8 +82,8 @@
 
 ```json
 {
-  "EnvironmentTemperature": 25.6,
-  "EnvironmentHumidity": 61.2,
+  "temperature": 25.6,
+  "humidity": 61.2,
   "LED": 1
 }
 ```
@@ -95,8 +95,8 @@ ESP32-C3 收到后会自动转换为 OneNet 需要的 property post 结构：
   "id": "123456",
   "version": "1.0",
   "params": {
-    "EnvironmentTemperature": { "value": 25.6 },
-    "EnvironmentHumidity": { "value": 61.2 },
+    "temperature": { "value": 25.6 },
+    "humidity": { "value": 61.2 },
     "LED": { "value": 1 }
   }
 }
@@ -110,7 +110,7 @@ ESP32-C3 收到后会自动转换为 OneNet 需要的 property post 结构：
 
 ```json
 {
-  "EnvironmentTemperature": { "value": 25.6 }
+  "temperature": { "value": 25.6 }
 }
 ```
 

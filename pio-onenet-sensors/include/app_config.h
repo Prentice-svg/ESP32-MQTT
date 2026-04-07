@@ -12,11 +12,10 @@
 #define ONENET_DEVICE_TOKEN "YOUR_DEVICE_TOKEN"
 
 // OneNet property identifiers
-// temperature / humidity already match your current OneNet model.
-// Change PROP_SOIL_MOISTURE if your soil moisture property uses another identifier.
-#define PROP_TEMPERATURE    "temperature"
-#define PROP_HUMIDITY       "humidity"
-#define PROP_SOIL_MOISTURE  "soil_moisture"
+// These identifiers should match your OneNet model exactly.
+#define PROP_TEMPERATURE    "EnvironmentTemperature"
+#define PROP_HUMIDITY       "EnvironmentHumidity"
+#define PROP_SOIL_MOISTURE  "SoilMoisture"
 
 // Sensor pins
 // Change these to match your actual wiring.

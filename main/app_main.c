@@ -31,10 +31,10 @@
 #include "nvs_flash.h"
 #include "protocol_examples_common.h"
 
-#define MQTT_BROKER_URI         "mqtt://mqtts.heclouds.com:1883"
-#define ONENET_PRODUCT_ID       "9Jj9iiZrie"
-#define ONENET_DEVICE_NAME      "ESP32_01"
-#define ONENET_DEVICE_TOKEN     "version=2018-10-31&res=products%2F9Jj9iiZrie%2Fdevices%2FESP32_01&et=1893427200&method=md5&sign=Xl5r9nRPfuVAYIITW2DN%2Bw%3D%3D"
+#define MQTT_BROKER_URI         CONFIG_EXAMPLE_BROKER_URL
+#define ONENET_PRODUCT_ID       CONFIG_EXAMPLE_ONENET_PRODUCT_ID
+#define ONENET_DEVICE_NAME      CONFIG_EXAMPLE_ONENET_DEVICE_NAME
+#define ONENET_DEVICE_TOKEN     CONFIG_EXAMPLE_ONENET_DEVICE_TOKEN
 
 #define UART_PORT_NUM           UART_NUM_1
 #define UART_BAUD_RATE          115200
@@ -539,12 +539,37 @@ static void uart_gateway_start(void)
 
 static void mqtt_app_start(void)
 {
-    const esp_mqtt_client_config_t mqtt_cfg = {
+    esp_mqtt_client_config_t mqtt_cfg = {
         .broker.address.uri = MQTT_BROKER_URI,
         .credentials.username = ONENET_PRODUCT_ID,
         .credentials.client_id = ONENET_DEVICE_NAME,
         .credentials.authentication.password = ONENET_DEVICE_TOKEN,
     };
+
+#if CONFIG_EXAMPLE_BROKER_URL_FROM_STDIN
+    char line[128];
+
+    if (strcmp(mqtt_cfg.broker.address.uri, "FROM_STDIN") == 0) {
+        int count = 0;
+
+        printf("Please enter url of mqtt broker\n");
+        while (count < (int)sizeof(line)) {
+            int c = fgetc(stdin);
+            if (c == '\n') {
+                line[count] = '\0';
+                break;
+            } else if (c > 0 && c < 127) {
+                line[count++] = (char)c;
+            }
+            vTaskDelay(pdMS_TO_TICKS(10));
+        }
+        mqtt_cfg.broker.address.uri = line;
+        printf("Broker url: %s\n", line);
+    } else {
+        ESP_LOGE(TAG, "Configuration mismatch: wrong broker url");
+        abort();
+    }
+#endif
 
     s_mqtt_client = esp_mqtt_client_init(&mqtt_cfg);
     esp_mqtt_client_register_event(s_mqtt_client, ESP_EVENT_ANY_ID, mqtt_event_handler, NULL);

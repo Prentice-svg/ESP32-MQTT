@@ -1,13 +1,31 @@
 menu "Example Configuration"
 
-    config BROKER_URL
-        string "Broker URL"
-        default "mqtt://mqtt.eclipseprojects.io"
+    config EXAMPLE_BROKER_URL
+        string "MQTT Broker URL"
+        default "mqtt://mqtts.heclouds.com:1883"
         help
             URL of the broker to connect to
 
-    config BROKER_URL_FROM_STDIN
+    config EXAMPLE_BROKER_URL_FROM_STDIN
         bool
-        default y if BROKER_URL = "FROM_STDIN"
+        default y if EXAMPLE_BROKER_URL = "FROM_STDIN"
+
+    config EXAMPLE_ONENET_PRODUCT_ID
+        string "OneNet Product ID"
+        default "9Jj9iiZrie"
+        help
+            OneNet product ID used as MQTT username.
+
+    config EXAMPLE_ONENET_DEVICE_NAME
+        string "OneNet Device Name"
+        default "ESP32_01"
+        help
+            OneNet device name used as MQTT client ID.
+
+    config EXAMPLE_ONENET_DEVICE_TOKEN
+        string "OneNet Device Token"
+        default "version=2018-10-31&res=products%2F9Jj9iiZrie%2Fdevices%2FESP32_01&et=1893427200&method=md5&sign=Xl5r9nRPfuVAYIITW2DN%2Bw%3D%3D"
+        help
+            OneNet token/password for the device.
 
 endmenu

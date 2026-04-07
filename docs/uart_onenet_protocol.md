@@ -20,12 +20,20 @@
 - `ESP32-C3 UART1 TX = GPIO5`
 - `ESP32-C3 UART1 RX = GPIO4`
 - 波特率 `115200`
+- OneNet 参数通过 `idf.py menuconfig` 配置
 
 如果你的硬件引脚不同，修改 [`main/app_main.c`](E:/Dev/物联网/ESP32-MQTT/main/app_main.c) 顶部这些宏即可：
 
 - `UART_TX_PIN`
 - `UART_RX_PIN`
 - `UART_BAUD_RATE`
+
+如果你要修改云平台参数，打开 `menuconfig` 后配置这些项：
+
+- `Example Configuration -> MQTT Broker URL`
+- `Example Configuration -> OneNet Product ID`
+- `Example Configuration -> OneNet Device Name`
+- `Example Configuration -> OneNet Device Token`
 
 ## 2. 帧格式
 
@@ -153,7 +161,23 @@ ESP32-C3 会自动：
 - `5` 未知命令
 - `6` 校验失败
 
-## 7. 推荐调试顺序
+## 7. STM32 接收云控建议
+
+STM32 端建议：
+
+- 开启 UART 接收中断
+- 逐字节喂给协议状态机
+- 收到 `0x82` 后解析 JSON
+- 按属性名执行本地控制
+
+本仓库示例里，[`stm32f103c8t6_uart_example.c`](E:/Dev/物联网/ESP32-MQTT/stm32/stm32f103c8t6_uart_example.c) 已经包含：
+
+- `ESP_StartReceiveIT()` 启动串口中断接收
+- `HAL_UART_RxCpltCallback()` 逐字节接收
+- `ESP_ProcessReceivedByte()` 协议解帧
+- `APP_HandleCloudSetJson()` 解析 `0x82` 云控 JSON 并执行 LED 控制
+
+## 8. 推荐调试顺序
 
 1. 先单独验证 ESP32-C3 能连上 Wi-Fi 和 OneNet
 2. STM32 先发 `PING`

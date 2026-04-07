@@ -30,9 +30,28 @@ Update:
 - `ONENET_PRODUCT_ID`
 - `ONENET_DEVICE_NAME`
 - `ONENET_DEVICE_TOKEN`
-- property identifiers such as `PROP_SOIL_MOISTURE` if your OneNet model uses a different name
+- `PROP_SOIL_MOISTURE` if your OneNet model uses a different soil moisture identifier
 - sensor pins if your wiring differs
 - `SOIL_ADC_DRY` and `SOIL_ADC_WET` after calibration
+
+The project already uses these OneNet property identifiers:
+
+- `temperature`
+- `humidity`
+
+## Upload And Monitor
+
+The serial port is preconfigured to `COM3`.
+
+Use:
+
+```bash
+pio run
+pio run -t upload
+pio device monitor
+```
+
+If your board shows up on another port, update `upload_port` and `monitor_port` in `platformio.ini`.
 
 ## Default Pin Assumptions
 
